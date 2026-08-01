@@ -1,0 +1,16 @@
+package main
+
+import (
+	"context"
+	"encoding/json"
+
+	"github.com/aws/aws-lambda-go/lambda"
+
+	gsi "github.com/espressif/esp-cloud-common/cdk_go/gsi_infra/lambdas"
+)
+
+func main() {
+	lambda.Start(func(ctx context.Context, raw json.RawMessage) (interface{}, error) {
+		return gsi.OnEvent(ctx, raw)
+	})
+}

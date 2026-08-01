@@ -1,0 +1,960 @@
+[
+    {
+        "name": "Policies Merging Test Cases",
+        "cases": [
+            {
+                "description": "Super Admin Policy",
+                "input": {
+                    "policies": [
+                        {
+                            "Version": "1.0.0",
+                            "Statements": [
+                                {
+                                    "Effect": "Allow",
+                                    "Action": [
+                                        "*"
+                                    ],
+                                    "Resource": [
+                                        "*"
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "output": {
+                    "*": {
+                        "*": {
+                            "effect": true
+                        }
+                    }
+                }
+            },
+            {
+                "description": "Confined single Policy",
+                "input": {
+                    "policies": [
+                        {
+                            "Version": "1.0.0",
+                            "Statements": [
+                                {
+                                    "Effect": "Allow",
+                                    "Action": [
+                                        "batch:update",
+                                        "batch:get"
+                                    ],
+                                    "Resource": [
+                                        "batch:BATCH_ID"
+                                    ]
+                                },
+                                {
+                                    "Effect": "Allow",
+                                    "Action": [
+                                        "ca:get",
+                                        "ca:issueCertificate"
+                                    ],
+                                    "Resource": [
+                                        "ca:CA_ID"
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "output": {
+                    "batch:update": {
+                        "BATCH_ID": {
+                            "effect": true
+                        }
+                    },
+                    "batch:get": {
+                        "BATCH_ID": {
+                            "effect": true
+                        }
+                    },
+                    "ca:get": {
+                        "CA_ID": {
+                            "effect": true
+                        }
+                    },
+                    "ca:issueCertificate": {
+                        "CA_ID": {
+                            "effect": true
+                        }
+                    }
+                }
+            },
+            {
+                "description": "Trying for 2 non-overlapping Policies",
+                "input": {
+                    "policies": [
+                        {
+                            "Version": "1.0.0",
+                            "Statements": [
+                                {
+                                    "Effect": "Allow",
+                                    "Action": [
+                                        "batch:update",
+                                        "batch:get"
+                                    ],
+                                    "Resource": [
+                                        "batch:BATCH_ID"
+                                    ]
+                                },
+                                {
+                                    "Effect": "Allow",
+                                    "Action": [
+                                        "ca:get",
+                                        "ca:issueCertificate"
+                                    ],
+                                    "Resource": [
+                                        "ca:CA_ID"
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "Version": "1.0.0",
+                            "Statements": [
+                                {
+                                    "Effect": "Allow",
+                                    "Action": [
+                                        "batch:update",
+                                        "batch:get"
+                                    ],
+                                    "Resource": [
+                                        "batch:BATCH_ID2"
+                                    ]
+                                },
+                                {
+                                    "Effect": "Allow",
+                                    "Action": [
+                                        "ca:get",
+                                        "ca:issueCertificate"
+                                    ],
+                                    "Resource": [
+                                        "ca:CA_ID2"
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "output": {
+                    "batch:update": {
+                        "BATCH_ID": {
+                            "effect": true
+                        },
+                        "BATCH_ID2": {
+                            "effect": true
+                        }
+                    },
+                    "batch:get": {
+                        "BATCH_ID": {
+                            "effect": true
+                        },
+                        "BATCH_ID2": {
+                            "effect": true
+                        }
+                    },
+                    "ca:get": {
+                        "CA_ID": {
+                            "effect": true
+                        },
+                        "CA_ID2": {
+                            "effect": true
+                        }
+                    },
+                    "ca:issueCertificate": {
+                        "CA_ID": {
+                            "effect": true
+                        },
+                        "CA_ID2": {
+                            "effect": true
+                        }
+                    }
+                }
+            },
+            {
+                "description": "Trying for 2 overlapping Policies",
+                "input": {
+                    "policies": [
+                        {
+                            "Version": "1.0.0",
+                            "Statements": [
+                                {
+                                    "Effect": "Allow",
+                                    "Action": [
+                                        "batch:update",
+                                        "batch:get"
+                                    ],
+                                    "Resource": [
+                                        "batch:BATCH_ID"
+                                    ]
+                                },
+                                {
+                                    "Effect": "Allow",
+                                    "Action": [
+                                        "ca:get",
+                                        "ca:issueCertificate"
+                                    ],
+                                    "Resource": [
+                                        "ca:CA_ID"
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "Version": "1.0.0",
+                            "Statements": [
+                                {
+                                    "Effect": "Allow",
+                                    "Action": [
+                                        "batch:update",
+                                        "batch:get"
+                                    ],
+                                    "Resource": [
+                                        "*"
+                                    ]
+                                },
+                                {
+                                    "Effect": "Allow",
+                                    "Action": [
+                                        "ca:get",
+                                        "ca:issueCertificate"
+                                    ],
+                                    "Resource": [
+                                        "ca:CA_ID2"
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "output": {
+                    "batch:update": {
+                        "*": {
+                            "effect": true
+                        }
+                    },
+                    "batch:get": {
+                        "*": {
+                            "effect": true
+                        }
+                    },
+                    "ca:get": {
+                        "CA_ID": {
+                            "effect": true
+                        },
+                        "CA_ID2": {
+                            "effect": true
+                        }
+                    },
+                    "ca:issueCertificate": {
+                        "CA_ID": {
+                            "effect": true
+                        },
+                        "CA_ID2": {
+                            "effect": true
+                        }
+                    }
+                }
+            },
+            {
+                "description": "Trying for 2 overlapping Policies - swapped",
+                "input": {
+                    "policies": [
+                        {
+                            "Version": "1.0.0",
+                            "Statements": [
+                                {
+                                    "Effect": "Allow",
+                                    "Action": [
+                                        "batch:update",
+                                        "batch:get"
+                                    ],
+                                    "Resource": [
+                                        "*"
+                                    ]
+                                },
+                                {
+                                    "Effect": "Allow",
+                                    "Action": [
+                                        "ca:get",
+                                        "ca:issueCertificate"
+                                    ],
+                                    "Resource": [
+                                        "ca:CA_ID2"
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "Version": "1.0.0",
+                            "Statements": [
+                                {
+                                    "Effect": "Allow",
+                                    "Action": [
+                                        "batch:update",
+                                        "batch:get"
+                                    ],
+                                    "Resource": [
+                                        "batch:BATCH_ID"
+                                    ]
+                                },
+                                {
+                                    "Effect": "Allow",
+                                    "Action": [
+                                        "ca:get",
+                                        "ca:issueCertificate"
+                                    ],
+                                    "Resource": [
+                                        "ca:CA_ID"
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "output": {
+                    "batch:update": {
+                        "*": {
+                            "effect": true
+                        }
+                    },
+                    "batch:get": {
+                        "*": {
+                            "effect": true
+                        }
+                    },
+                    "ca:get": {
+                        "CA_ID": {
+                            "effect": true
+                        },
+                        "CA_ID2": {
+                            "effect": true
+                        }
+                    },
+                    "ca:issueCertificate": {
+                        "CA_ID": {
+                            "effect": true
+                        },
+                        "CA_ID2": {
+                            "effect": true
+                        }
+                    }
+                }
+            },
+            {
+                "description": "Giving all permissions to a resource",
+                "input": {
+                    "policies": [
+                        {
+                            "Version": "1.0.0",
+                            "Statements": [
+                                {
+                                    "Effect": "Allow",
+                                    "Action": [
+                                        "*"
+                                    ],
+                                    "Resource": [
+                                        "batch:BATCH_ID"
+                                    ]
+                                },
+                                {
+                                    "Effect": "Allow",
+                                    "Action": [
+                                        "ca:get",
+                                        "ca:issueCertificate"
+                                    ],
+                                    "Resource": [
+                                        "ca:CA_ID"
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "output": {
+                    "batch:*": {
+                        "BATCH_ID": {
+                            "effect": true
+                        }
+                    },
+                    "ca:get": {
+                        "CA_ID": {
+                            "effect": true
+                        }
+                    },
+                    "ca:issueCertificate": {
+                        "CA_ID": {
+                            "effect": true
+                        }
+                    }
+                }
+            },
+            {
+                "description": "Giving all permissions to a resource and second policy with confined permissions",
+                "input": {
+                    "policies": [
+                        {
+                            "Version": "1.0.0",
+                            "Statements": [
+                                {
+                                    "Effect": "Allow",
+                                    "Action": [
+                                        "*"
+                                    ],
+                                    "Resource": [
+                                        "batch:BATCH_ID"
+                                    ]
+                                },
+                                {
+                                    "Effect": "Allow",
+                                    "Action": [
+                                        "ca:get",
+                                        "ca:issueCertificate"
+                                    ],
+                                    "Resource": [
+                                        "ca:CA_ID"
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "Version": "1.0.0",
+                            "Statements": [
+                                {
+                                    "Effect": "Allow",
+                                    "Action": [
+                                        "batch:get"
+                                    ],
+                                    "Resource": [
+                                        "batch:BATCH_ID"
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "output": {
+                    "batch:*": {
+                        "BATCH_ID": {
+                            "effect": true
+                        }
+                    },
+                    "ca:get": {
+                        "CA_ID": {
+                            "effect": true
+                        }
+                    },
+                    "ca:issueCertificate": {
+                        "CA_ID": {
+                            "effect": true
+                        }
+                    }
+                }
+            },
+            {
+                "description": "Giving minimal permissions to a resource and second policy with all permissions for that resource",
+                "input": {
+                    "policies": [
+                        {
+                            "Version": "1.0.0",
+                            "Statements": [
+                                {
+                                    "Effect": "Allow",
+                                    "Action": [
+                                        "batch:get"
+                                    ],
+                                    "Resource": [
+                                        "batch:BATCH_ID"
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "Version": "1.0.0",
+                            "Statements": [
+                                {
+                                    "Effect": "Allow",
+                                    "Action": [
+                                        "*"
+                                    ],
+                                    "Resource": [
+                                        "batch:BATCH_ID"
+                                    ]
+                                },
+                                {
+                                    "Effect": "Allow",
+                                    "Action": [
+                                        "ca:get",
+                                        "ca:issueCertificate"
+                                    ],
+                                    "Resource": [
+                                        "ca:CA_ID"
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "output": {
+                    "batch:*": {
+                        "BATCH_ID": {
+                            "effect": true
+                        }
+                    },
+                    "batch:get": {
+                        "BATCH_ID": {
+                            "effect": true
+                        }
+                    },
+                    "ca:get": {
+                        "CA_ID": {
+                            "effect": true
+                        }
+                    },
+                    "ca:issueCertificate": {
+                        "CA_ID": {
+                            "effect": true
+                        }
+                    }
+                }
+            },
+            {
+                "description": "Giving minimal permissions to a resource and all permissions for other 2 resources",
+                "input": {
+                    "policies": [
+                        {
+                            "Version": "1.0.0",
+                            "Statements": [
+                                {
+                                    "Effect": "Allow",
+                                    "Action": [
+                                        "batch:get"
+                                    ],
+                                    "Resource": [
+                                        "batch:BATCH_ID2"
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "Version": "1.0.0",
+                            "Statements": [
+                                {
+                                    "Effect": "Allow",
+                                    "Action": [
+                                        "*"
+                                    ],
+                                    "Resource": [
+                                        "batch:BATCH_ID3"
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "Version": "1.0.0",
+                            "Statements": [
+                                {
+                                    "Effect": "Allow",
+                                    "Action": [
+                                        "*"
+                                    ],
+                                    "Resource": [
+                                        "batch:BATCH_ID"
+                                    ]
+                                },
+                                {
+                                    "Effect": "Allow",
+                                    "Action": [
+                                        "ca:get",
+                                        "ca:issueCertificate"
+                                    ],
+                                    "Resource": [
+                                        "ca:CA_ID"
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "output": {
+                    "batch:*": {
+                        "BATCH_ID": {
+                            "effect": true
+                        },
+                        "BATCH_ID3": {
+                            "effect": true
+                        }
+                    },
+                    "batch:get": {
+                        "BATCH_ID2": {
+                            "effect": true
+                        }
+                    },
+                    "ca:get": {
+                        "CA_ID": {
+                            "effect": true
+                        }
+                    },
+                    "ca:issueCertificate": {
+                        "CA_ID": {
+                            "effect": true
+                        }
+                    }
+                }
+            },
+            {
+                "description": "Super Admin Policy and some specific policy in that order",
+                "input": {
+                    "policies": [
+                        {
+                            "Version": "1.0.0",
+                            "Statements": [
+                                {
+                                    "Effect": "Allow",
+                                    "Action": [
+                                        "*"
+                                    ],
+                                    "Resource": [
+                                        "*"
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "Version": "1.0.0",
+                            "Statements": [
+                                {
+                                    "Effect": "Allow",
+                                    "Action": [
+                                        "batch:get"
+                                    ],
+                                    "Resource": [
+                                        "batch:BATCH_ID"
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "output": {
+                    "*": {
+                        "*": {
+                            "effect": true
+                        }
+                    }
+                }
+            },
+            {
+                "description": "Super Admin Policy and some specific policy in reversed order",
+                "input": {
+                    "policies": [
+                        {
+                            "Version": "1.0.0",
+                            "Statements": [
+                                {
+                                    "Effect": "Allow",
+                                    "Action": [
+                                        "batch:get"
+                                    ],
+                                    "Resource": [
+                                        "batch:BATCH_ID"
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "Version": "1.0.0",
+                            "Statements": [
+                                {
+                                    "Effect": "Allow",
+                                    "Action": [
+                                        "*"
+                                    ],
+                                    "Resource": [
+                                        "*"
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "output": {
+                    "*": {
+                        "*": {
+                            "effect": true
+                        }
+                    },
+                    "batch:get": {
+                        "BATCH_ID": {
+                            "effect": true
+                        }
+                    }
+                }
+            }
+        ]
+    },
+    {
+        "name": "Clubbing multiple types of resources and actions in a single statement",
+        "cases": [
+            {
+                "description": "Type 1 - Un-necessary permissions",
+                "input": {
+                    "policies": [
+                        {
+                            "Version": "1.0.0",
+                            "Statements": [
+                                {
+                                    "Effect": "Allow",
+                                    "Action": [
+                                        "batch:get",
+                                        "project:get"
+                                    ],
+                                    "Resource": [
+                                        "batch:BATCH_ID"
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "output": {
+                    "batch:get": {
+                        "BATCH_ID": {
+                            "effect": true
+                        }
+                    }
+                }
+            },
+            {
+                "description": "Type 2 - Two statements in one",
+                "input": {
+                    "policies": [
+                        {
+                            "Version": "1.0.0",
+                            "Statements": [
+                                {
+                                    "Effect": "Allow",
+                                    "Action": [
+                                        "batch:get",
+                                        "project:get"
+                                    ],
+                                    "Resource": [
+                                        "batch:BATCH_ID",
+                                        "project:PROJECT_ID"
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "output": {
+                    "batch:get": {
+                        "BATCH_ID": {
+                            "effect": true
+                        }
+                    },
+                    "project:get": {
+                        "PROJECT_ID": {
+                            "effect": true
+                        }
+                    }
+                }
+            }
+        ]
+    },
+    {
+        "name": "Common Cases",
+        "cases": [
+            {
+                "description": "Factory Admin",
+                "input": {
+                    "policies": [
+                        {
+                            "Version": "1.0.0",
+                            "Statements": [
+                                {
+                                    "Effect": "Allow",
+                                    "Action": [
+                                        "project:batchCreate",
+                                        "project:get",
+                                        "batch:update",
+                                        "batch:get",
+                                        "ca:get"
+                                    ],
+                                    "Resource": [
+                                        "*"
+                                    ]
+                                },
+                                {
+                                    "Effect": "Allow",
+                                    "Action": [
+                                        "auth_key:*"
+                                    ],
+                                    "Resource": [
+                                        "*"
+                                    ]
+                                },
+                                {
+                                    "Effect": "Allow",
+                                    "Action": [
+                                        "role:create",
+                                        "role:get",
+                                        "role:delegateToAuthKey",
+                                        "policy:create",
+                                        "policy:get"
+                                    ],
+                                    "Resource": [
+                                        "*"
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "output": {
+                    "project:batchCreate": {
+                        "*": {
+                            "effect": true
+                        }
+                    },
+                    "project:get": {
+                        "*": {
+                            "effect": true
+                        }
+                    },
+                    "batch:update": {
+                        "*": {
+                            "effect": true
+                        }
+                    },
+                    "batch:get": {
+                        "*": {
+                            "effect": true
+                        }
+                    },
+                    "ca:get": {
+                        "*": {
+                            "effect": true
+                        }
+                    },
+                    "auth_key:*": {
+                        "*": {
+                            "effect": true
+                        }
+                    },
+                    "role:delegateToAuthKey": {
+                        "*": {
+                            "effect": true
+                        }
+                    },
+                    "role:create": {
+                        "*": {
+                            "effect": true
+                        }
+                    },
+                    "role:get": {
+                        "*": {
+                            "effect": true
+                        }
+                    },
+                    "policy:create": {
+                        "*": {
+                            "effect": true
+                        }
+                    },
+                    "policy:get": {
+                        "*": {
+                            "effect": true
+                        }
+                    }
+                }
+            },
+            {
+                "description": "Factory Admin",
+                "input": {
+                    "policies": [
+                        {
+                            "Version": "1.0.0",
+                            "Statements": [
+                                {
+                                    "Effect": "Allow",
+                                    "Action": [
+                                        "batch:updateLimit",
+                                        "batch:get",
+                                        "project:get"
+                                    ],
+                                    "Resource": [
+                                        "batch:BATCH_ID",
+                                        "project:PROJECT_ID"
+                                    ]
+                                },
+                                {
+                                    "Effect": "Allow",
+                                    "Action": [
+                                        "ca:get",
+                                        "ca:issueCertificate"
+                                    ],
+                                    "Resource": [
+                                        "ca:CA_ID"
+                                    ]
+                                },
+                                {
+                                    "Effect": "Allow",
+                                    "Action": [
+                                        "role:get",
+                                        "policy:get"
+                                    ],
+                                    "Resource": [
+                                        "role:BATCH_1_ROLE",
+                                        "policy:BATCH_1_POLICY"
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "output": {
+                    "project:get": {
+                        "PROJECT_ID": {
+                            "effect": true
+                        }
+                    },
+                    "batch:get": {
+                        "BATCH_ID": {
+                            "effect": true
+                        }
+                    },
+                    "batch:updateLimit": {
+                        "BATCH_ID": {
+                            "effect": true
+                        }
+                    },
+                    "ca:get": {
+                        "CA_ID": {
+                            "effect": true
+                        }
+                    },
+                    "ca:issueCertificate": {
+                        "CA_ID": {
+                            "effect": true
+                        }
+                    },
+                    "role:get": {
+                        "BATCH_1_ROLE": {
+                            "effect": true
+                        }
+                    },
+                    "policy:get": {
+                        "BATCH_1_POLICY": {
+                            "effect": true
+                        }
+                    }
+                }
+            }
+        ]
+    }
+]

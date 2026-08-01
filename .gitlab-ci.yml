@@ -1,0 +1,66 @@
+workflow:
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+    - if: "$CI_COMMIT_BRANCH && $CI_OPEN_MERGE_REQUESTS"
+      when: never
+    - if: "$CI_COMMIT_BRANCH"
+
+variables:
+  GIT_SUBMODULE_STRATEGY: recursive
+
+default:
+  image: ${CI_DOCKER_IMAGE_PATH_RAINMAKER_NEO}/rmng:go1.26.5_node22
+  tags:
+    - rmng
+
+stages:
+  - unittest
+  - security
+
+unittest:
+  stage: unittest
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+      changes:
+        - "**/*.go"
+        - go.mod
+        - go.sum
+        - Makefile
+  before_script:
+    - go install github.com/onsi/ginkgo/v2/ginkgo@latest
+    - go install github.com/onsi/gomega/...@latest
+    - go install github.com/boumenot/gocover-cobertura@latest
+  script:
+    - make test
+    - gocover-cobertura < coverage.out > coverage.xml
+  coverage: '/coverage: \d+\.\d+% of statements/'
+  artifacts:
+    when: always
+    reports:
+      coverage_report:
+        coverage_format: cobertura
+        path: coverage.xml
+    paths:
+      - coverage.xml
+      - coverage.out
+      - build/tests/
+
+# -------------------------
+# Vulnerability scanning (govulncheck) — blocking gate
+# -------------------------
+go_vulncheck:
+  stage: security
+  # Pinned (the default image here is Go 1.22.1): the scan must run on Go >= 1.26.5
+  # so the crypto/tls stdlib advisory is already fixed, matching the module's go
+  # directive. The floating minor tag keeps picking up stdlib security patches
+  # without an unpredictable jump to a new major/minor that :latest would bring.
+  image: golang:1.26
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+      changes:
+        - "**/*.go"
+        - go.mod
+        - go.sum
+        - Makefile
+  script:
+    - make vulncheck

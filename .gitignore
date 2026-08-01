@@ -1,0 +1,32 @@
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.backup
+*.tfstate.lock.info
+crash.log
+
+# Local agent settings
+.claude/
+
+# Editor
+.vscode/
+.idea/
+*.swp
+
+# macOS
+.DS_Store
+
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+myenv/
+.venv/
+
+# Go build outputs
+build/
+cdk.out/
+coverage.out
+*.pyc
+.venv/
+venv/

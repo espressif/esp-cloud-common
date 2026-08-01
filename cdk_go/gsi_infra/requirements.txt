@@ -1,0 +1,6 @@
+# Runtime deps for the gsi_infra CDK construct.
+# Consumers can `pip install -r esp-cloud-common/cdk/gsi_infra/requirements.txt`
+# to pull these in directly, but typically the consuming product already
+# has its own requirements.txt that pins the same packages.
+aws-cdk-lib>=2.198.0
+constructs>=10.4.2

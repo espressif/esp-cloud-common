@@ -1,0 +1,173 @@
+[
+    {
+        "name": "Validating Authorize Entity",
+        "cases": [
+            {
+                "description": "Case 1",
+                "input": {
+                    "batch:get": {
+                        "*": {
+                            "effect": true
+                        }
+                    }
+                },
+                "toValidate": [
+                    {
+                        "action": "batch:get",
+                        "resource": "*",
+                        "expected": true
+                    },
+                    {
+                        "action": "batch:get",
+                        "resource": "xyz",
+                        "expected": true
+                    },
+                    {
+                        "action": "batch:update",
+                        "resource": "xyz",
+                        "expected": false
+                    }
+                ]
+            },
+            {
+                "description": "Case 2",
+                "input": {
+                    "*": {
+                        "*": {
+                            "effect": true
+                        }
+                    }
+                },
+                "toValidate": [
+                    {
+                        "action": "batch:get",
+                        "resource": "*",
+                        "expected": true
+                    }
+                ]
+            },
+            {
+                "description": "Case 3",
+                "input": {
+                    "batch:*": {
+                        "BATCH_ID": {
+                            "effect": true
+                        },
+                        "BATCH_ID3": {
+                            "effect": true
+                        }
+                    },
+                    "batch:get": {
+                        "BATCH_ID2": {
+                            "effect": true
+                        }
+                    },
+                    "ca:get": {
+                        "CA_ID": {
+                            "effect": true
+                        }
+                    },
+                    "ca:issueCertificate": {
+                        "CA_ID": {
+                            "effect": true
+                        }
+                    }
+                },
+                "toValidate": [
+                    {
+                        "action": "batch:get",
+                        "resource": "*",
+                        "expected": false
+                    },
+                    {
+                        "action": "batch:get",
+                        "resource": "BATCH_ID2",
+                        "expected": true
+                    },
+                    {
+                        "action": "batch:get",
+                        "resource": "BATCH_ID",
+                        "expected": true
+                    },
+                    {
+                        "action": "batch:get",
+                        "resource": "BATCH_ID3",
+                        "expected": true
+                    },
+                    {
+                        "action": "ca:get",
+                        "resource": "CA_ID",
+                        "expected": true
+                    }
+                ]
+            },
+            {
+                "description": "Factory System Policy",
+                "input": {
+                    "project:get": {
+                        "PROJECT_ID": {
+                            "effect": true
+                        }
+                    },
+                    "batch:get": {
+                        "BATCH_ID": {
+                            "effect": true
+                        }
+                    },
+                    "batch:updateLimit": {
+                        "BATCH_ID": {
+                            "effect": true
+                        }
+                    },
+                    "ca:get": {
+                        "CA_ID": {
+                            "effect": true
+                        }
+                    },
+                    "ca:issueCertificate": {
+                        "CA_ID": {
+                            "effect": true
+                        }
+                    },
+                    "role:get": {
+                        "BATCH_1_ROLE": {
+                            "effect": true
+                        }
+                    },
+                    "policy:get": {
+                        "BATCH_1_POLICY": {
+                            "effect": true
+                        }
+                    }
+                },
+                "toValidate": [
+                    {
+                        "action": "batch:get",
+                        "resource": "BATCH_ID",
+                        "expected": true
+                    },
+                    {
+                        "action": "batch:get",
+                        "resource": "BATCH_ID2",
+                        "expected": false
+                    },
+                    {
+                        "action": "batch:get",
+                        "resource": "BATCH_ID",
+                        "expected": true
+                    },
+                    {
+                        "action": "batch:updateLimit",
+                        "resource": "BATCH_ID",
+                        "expected": true
+                    },
+                    {
+                        "action": "ca:get",
+                        "resource": "CA_ID",
+                        "expected": true
+                    }
+                ]
+            }
+        ]
+    }
+]

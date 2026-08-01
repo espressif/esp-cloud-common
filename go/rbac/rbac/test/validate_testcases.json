@@ -1,0 +1,355 @@
+[
+    {
+        "name": "",
+        "validator": {
+            "ValidVersions": [
+                "1.0.0"
+            ],
+            "ValidResourceTypes": [
+                "batch",
+                "project",
+                "auth_key",
+                "ca",
+                "role",
+                "policy",
+                "user"
+            ],
+            "ValidResourceActions": {
+                "batch": {
+                    "get": true,
+                    "update": true
+                },
+                "project": {
+                    "update": true,
+                    "create": true,
+                    "batchCreate": true,
+                    "get": true
+                },
+                "auth_key": {
+                    "create": true,
+                    "update": true,
+                    "get": true,
+                    "delete": true
+                },
+                "ca": {
+                    "create": true,
+                    "update": true,
+                    "get": true,
+                    "issueCertificate": true,
+                    "delete": true
+                },
+                "role": {
+                    "create": true,
+                    "update": true,
+                    "get": true,
+                    "delete": true
+                },
+                "policy": {
+                    "create": true,
+                    "update": true,
+                    "get": true,
+                    "delegateToAuthKey": true,
+                    "delegateToUser": true,
+                    "delete": true
+                },
+                "user": {
+                    "create": true,
+                    "update": true,
+                    "get": true,
+                    "delete": true
+                }
+            },
+            "ValidEffects": [
+                "Allow"
+            ]
+        },
+        "cases": [
+            {
+                "description": "Super Admin Policy",
+                "input": {
+                    "Version": "1.0.0",
+                    "Statements": [
+                        {
+                            "Effect": "Allow",
+                            "Action": [
+                                "*"
+                            ],
+                            "Resource": [
+                                "*"
+                            ]
+                        }
+                    ]
+                },
+                "output": {
+                    "valid": true
+                }
+            },
+            {
+                "description": "Invalid Version",
+                "input": {
+                    "Version": "1.0.1",
+                    "Statements": [
+                    ]
+                },
+                "output": {
+                    "valid": false,
+                    "errCode":"InvalidPolicyVersion"
+                }
+            },
+            {
+                "description": "Empty Statements",
+                "input": {
+                    "Version": "1.0.0",
+                    "Statements": [
+                    ]
+                },
+                "output": {
+                    "valid": false,
+                    "errCode":"InvalidStatements"
+                }
+            },
+            {
+                "description": "Invalid Statements with no resource",
+                "input": {
+                    "Version": "1.0.0",
+                    "Statements": [
+                        {
+                            "Effect": "Allow",
+                            "Action": [
+                                "*"
+                            ]
+                        }
+                    ]
+                },
+                "output": {
+                    "valid": false,
+                    "errCode":"InvalidActionResource"
+                }
+            },
+            {
+                "description": "Invalid Statements with no action's",
+                "input": {
+                    "Version": "1.0.0",
+                    "Statements": [
+                        {
+                            "Effect": "Allow",
+                            "Resource": [
+                                "*"
+                            ]
+                        }
+                    ]
+                },
+                "output": {
+                    "valid": false,
+                    "errCode":"InvalidActionResource"
+                }
+            },
+            {
+                "description": "Invalid Effect",
+                "input": {
+                    "Version": "1.0.0",
+                    "Statements": [
+                        {
+                            "Effect": "allow",
+                            "Action": [
+                                "*"
+                            ],
+                            "Resource": [
+                                "*"
+                            ]
+                        }
+                    ]
+                },
+                "output": {
+                    "valid": false,
+                    "errCode":"InvalidEffect"
+                }
+            },
+            {
+                "description": "Invalid Action",
+                "input": {
+                    "Version": "1.0.0",
+                    "Statements": [
+                        {
+                            "Effect": "Allow",
+                            "Action": [
+                                "xyz:*"
+                            ],
+                            "Resource": [
+                                "*"
+                            ]
+                        }
+                    ]
+                },
+                "output": {
+                    "valid": false,
+                    "errCode":"InvalidAction"
+                }
+            },
+            {
+                "description": "Invalid Action - 2",
+                "input": {
+                    "Version": "1.0.0",
+                    "Statements": [
+                        {
+                            "Effect": "Allow",
+                            "Action": [
+                                "batch:wer"
+                            ],
+                            "Resource": [
+                                "*"
+                            ]
+                        }
+                    ]
+                },
+                "output": {
+                    "valid": false,
+                    "errCode":"InvalidAction"
+                }
+            },
+            {
+                "description": "Invalid Action - 3",
+                "input": {
+                    "Version": "1.0.0",
+                    "Statements": [
+                        {
+                            "Effect": "Allow",
+                            "Action": [
+                                "*:wer"
+                            ],
+                            "Resource": [
+                                "*"
+                            ]
+                        }
+                    ]
+                },
+                "output": {
+                    "valid": false,
+                    "errCode":"InvalidAction"
+                }
+            },
+            {
+                "description": "Valid Action with *",
+                "input": {
+                    "Version": "1.0.0",
+                    "Statements": [
+                        {
+                            "Effect": "Allow",
+                            "Action": [
+                                "batch:*"
+                            ],
+                            "Resource": [
+                                "*"
+                            ]
+                        }
+                    ]
+                },
+                "output": {
+                    "valid": true
+                }
+            },
+            {
+                "description": "Invalid Resource - 1",
+                "input": {
+                    "Version": "1.0.0",
+                    "Statements": [
+                        {
+                            "Effect": "Allow",
+                            "Action": [
+                                "batch:*"
+                            ],
+                            "Resource": [
+                                "Xyz"
+                            ]
+                        }
+                    ]
+                },
+                "output": {
+                    "valid": false,
+                    "errCode":"InvalidResource"
+                }
+            },
+            {
+                "description": "Invalid Resource - 2",
+                "input": {
+                    "Version": "1.0.0",
+                    "Statements": [
+                        {
+                            "Effect": "Allow",
+                            "Action": [
+                                "batch:*"
+                            ],
+                            "Resource": [
+                                "xyz:*"
+                            ]
+                        }
+                    ]
+                },
+                "output": {
+                    "valid": false,
+                    "errCode":"InvalidResource"
+                }
+            },
+            {
+                "description": "Valid Resource - 1",
+                "input": {
+                    "Version": "1.0.0",
+                    "Statements": [
+                        {
+                            "Effect": "Allow",
+                            "Action": [
+                                "batch:*"
+                            ],
+                            "Resource": [
+                                "batch:Xyz"
+                            ]
+                        }
+                    ]
+                },
+                "output": {
+                    "valid": true
+                }
+            },
+            {
+                "description": "Valid Resource - 2",
+                "input": {
+                    "Version": "1.0.0",
+                    "Statements": [
+                        {
+                            "Effect": "Allow",
+                            "Action": [
+                                "batch:*"
+                            ],
+                            "Resource": [
+                                "project:Xyz"
+                            ]
+                        }
+                    ]
+                },
+                "output": {
+                    "valid": true
+                }
+            },
+            {
+                "description": "Valid Resource - 3",
+                "input": {
+                    "Version": "1.0.0",
+                    "Statements": [
+                        {
+                            "Effect": "Allow",
+                            "Action": [
+                                "batch:*"
+                            ],
+                            "Resource": [
+                                "batch:*"
+                            ]
+                        }
+                    ]
+                },
+                "output": {
+                    "valid": true
+                }
+            }
+        ]
+    }
+]
