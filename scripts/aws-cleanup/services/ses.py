@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2024-2026 Espressif Systems (Shanghai) CO LTD
+#
+# SPDX-License-Identifier: Apache-2.0
+
 """SES cleanup — both legacy SES (``ses``) and SES v2 (``sesv2``).
 
 Covers: identities (email/domain), configuration sets, templates, contact

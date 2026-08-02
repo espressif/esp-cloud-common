@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2024-2026 Espressif Systems (Shanghai) CO LTD
+#
+# SPDX-License-Identifier: Apache-2.0
+
 """Shared infrastructure for per-service cleanup modules.
 
 Each concrete service subclasses ``ServiceCleanup`` and implements ``run()``.

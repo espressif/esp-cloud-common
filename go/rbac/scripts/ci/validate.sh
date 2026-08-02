@@ -1,4 +1,8 @@
 #!/bin/sh
+# SPDX-FileCopyrightText: 2024-2026 Espressif Systems (Shanghai) CO LTD
+#
+# SPDX-License-Identifier: Apache-2.0
+
 #
 # This file can be run locally to test the code and is triggered on every push to the CI.
 # Note this runs on a runner which supports vanilla sh but not bash.

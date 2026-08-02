@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2024-2026 Espressif Systems (Shanghai) CO LTD
+#
+# SPDX-License-Identifier: Apache-2.0
+
 # Docker file to be used for CI dependencies
 # docker build . -> Returns an image ID
 # docker run <image-id>

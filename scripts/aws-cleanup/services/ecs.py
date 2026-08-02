@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2024-2026 Espressif Systems (Shanghai) CO LTD
+#
+# SPDX-License-Identifier: Apache-2.0
+
 """ECS cleanup — services and tasks first, then clusters, then task definitions.
 
 Service deletion requires desiredCount=0 first. Standalone running tasks are

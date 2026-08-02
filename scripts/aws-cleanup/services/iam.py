@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2024-2026 Espressif Systems (Shanghai) CO LTD
+#
+# SPDX-License-Identifier: Apache-2.0
+
 """IAM cleanup — all customer-managed identities and credentials.
 
 Covers: users (with their access keys, login profile, MFA, attached/inline

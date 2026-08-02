@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2024-2026 Espressif Systems (Shanghai) CO LTD
+#
+# SPDX-License-Identifier: Apache-2.0
+
 """EventBridge cleanup — rules across all buses, then non-default buses.
 
 Rules must have their targets removed before deletion.

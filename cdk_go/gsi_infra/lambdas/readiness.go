@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2024-2026 Espressif Systems (Shanghai) CO LTD
+//
+// SPDX-License-Identifier: Apache-2.0
+
 // Package gsi_infra (continued) hosts the GsiReadinessGate Lambdas: a
 // stack-level readiness barrier driven by a Step Functions state machine and
 // gated by a native AWS::CloudFormation::WaitCondition (up to 12h) instead of a

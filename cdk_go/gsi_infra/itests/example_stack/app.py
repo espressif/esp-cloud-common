@@ -1,4 +1,8 @@
 #!/usr/bin/env python3
+# SPDX-FileCopyrightText: 2024-2026 Espressif Systems (Shanghai) CO LTD
+#
+# SPDX-License-Identifier: Apache-2.0
+
 """Standalone CDK app for the GSI orchestrator integration-test fixture.
 
 Synthesizes a single gsi-infra-itest stack with a ManagedTable, the

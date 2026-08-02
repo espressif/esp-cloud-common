@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2024-2026 Espressif Systems (Shanghai) CO LTD
+#
+# SPDX-License-Identifier: Apache-2.0
+
 """ACM cleanup — public certificates and ACM Private Certificate Authorities.
 
 PCA uses a separate ``acm-pca`` client. Deleting a CA requires it to first

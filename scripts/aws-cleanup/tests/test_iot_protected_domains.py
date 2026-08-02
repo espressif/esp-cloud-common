@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2024-2026 Espressif Systems (Shanghai) CO LTD
+#
+# SPDX-License-Identifier: Apache-2.0
+
 """Tests for IoT-owned domain configuration protection.
 
 Attempting to delete AWS-owned domain configurations produces:

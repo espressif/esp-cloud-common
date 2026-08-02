@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2024-2026 Espressif Systems (Shanghai) CO LTD
+//
+// SPDX-License-Identifier: Apache-2.0
+
 // Package ddb provides a narrow DynamoDB control-plane client interface
 // for callers that only operate on table metadata (DescribeTable,
 // UpdateTable). A wider data-plane interface lives in higher-layer

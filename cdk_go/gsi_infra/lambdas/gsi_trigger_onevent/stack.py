@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2024-2026 Espressif Systems (Shanghai) CO LTD
+#
+# SPDX-License-Identifier: Apache-2.0
+
 """CFN custom-resource onEvent handler for the GSI provider.
 
 Starts a Step Functions execution per CFN Create/Update; on Delete, stops
