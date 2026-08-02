@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2024-2026 Espressif Systems (Shanghai) CO LTD
+#
+# SPDX-License-Identifier: Apache-2.0
+
 """API Gateway cleanup — handles both v1 (REST) and v2 (HTTP/WebSocket) APIs."""
 
 from botocore.exceptions import ClientError

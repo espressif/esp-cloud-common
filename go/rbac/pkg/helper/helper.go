@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2024-2026 Espressif Systems (Shanghai) CO LTD
+//
+// SPDX-License-Identifier: Apache-2.0
+
 package helper
 
 import "github.com/espressif/esp-cloud-common/go/rbac/pkg/logger"

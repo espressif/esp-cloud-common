@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2024-2026 Espressif Systems (Shanghai) CO LTD
+//
+// SPDX-License-Identifier: Apache-2.0
+
 // Package sfn wraps the AWS Step Functions client with esp-cloud-common
 // error handling and a single client lookup point. The active client is
 // the AWS SDK client by default; tests inject a mock via [SetClient].

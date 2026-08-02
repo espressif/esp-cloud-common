@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2024-2026 Espressif Systems (Shanghai) CO LTD
+#
+# SPDX-License-Identifier: Apache-2.0
+
 variable "alias" {
   description = "KMS alias without the 'alias/' prefix (e.g. 'my-product')."
   type        = string

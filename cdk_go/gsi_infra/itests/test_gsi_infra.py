@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2024-2026 Espressif Systems (Shanghai) CO LTD
+#
+# SPDX-License-Identifier: Apache-2.0
+
 """End-to-end integration tests for the GSI orchestrator.
 
 The fixture stack is self-contained: it instantiates the orchestrator,

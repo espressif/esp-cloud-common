@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2024-2026 Espressif Systems (Shanghai) CO LTD
+#
+# SPDX-License-Identifier: Apache-2.0
+
 output "key_id" {
   description = "KMS key ID."
   value       = aws_kms_key.this.key_id

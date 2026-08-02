@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2024-2026 Espressif Systems (Shanghai) CO LTD
+#
+# SPDX-License-Identifier: Apache-2.0
+
 """OpenSearch cleanup — managed domains and OpenSearch Serverless collections.
 
 Two unrelated APIs share the OpenSearch brand:

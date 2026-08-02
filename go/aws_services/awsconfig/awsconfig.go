@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2024-2026 Espressif Systems (Shanghai) CO LTD
+//
+// SPDX-License-Identifier: Apache-2.0
+
 // Package awsconfig builds a default AWS SDK config with retry behavior
 // suited to esp-cloud-common control-plane workloads: connection errors,
 // HTTP 5xx, RequestTimeout, and the full throttling 4xx are retried;

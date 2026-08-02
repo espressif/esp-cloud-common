@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2024-2026 Espressif Systems (Shanghai) CO LTD
+#
+# SPDX-License-Identifier: Apache-2.0
+
 """CloudTrail cleanup — opt-in only.
 
 Trails carry the audit log for the account. Deleting them by accident is

@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2024-2026 Espressif Systems (Shanghai) CO LTD
+//
+// SPDX-License-Identifier: Apache-2.0
+
 // Package gsi_infra hosts shared logic for the GSI trigger Lambdas.
 package gsi_infra
 

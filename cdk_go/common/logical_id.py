@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2024-2026 Espressif Systems (Shanghai) CO LTD
+#
+# SPDX-License-Identifier: Apache-2.0
+
 """Path-independent CFN logical IDs.
 
 CDK derives a construct's CloudFormation logical ID from its construct

@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2024-2026 Espressif Systems (Shanghai) CO LTD
+#
+# SPDX-License-Identifier: Apache-2.0
+
 """RDS cleanup — DB instances, clusters, manual snapshots.
 
 RDS is normally protected by deletion protection and final-snapshot

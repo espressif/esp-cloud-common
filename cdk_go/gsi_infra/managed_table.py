@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2024-2026 Espressif Systems (Shanghai) CO LTD
+#
+# SPDX-License-Identifier: Apache-2.0
+
 """ManagedTable: a DynamoDB Table that routes GSI changes through the GSI
 orchestrator. Drop-in for ``aws_cdk.aws_dynamodb.Table`` plus a
 ``common_resources`` argument carrying the orchestrator's ARNs.

@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2024-2026 Espressif Systems (Shanghai) CO LTD
+#
+# SPDX-License-Identifier: Apache-2.0
+
 """GSI orchestrator state machine + composer.
 
 Callers wire this into a base CDK stack and then use [ManagedTable] (in

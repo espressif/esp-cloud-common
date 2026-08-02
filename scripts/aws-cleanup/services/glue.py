@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2024-2026 Espressif Systems (Shanghai) CO LTD
+#
+# SPDX-License-Identifier: Apache-2.0
+
 """Glue cleanup — jobs, crawlers, triggers, databases (with their tables)."""
 
 from botocore.exceptions import ClientError

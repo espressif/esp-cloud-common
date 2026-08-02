@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2024-2026 Espressif Systems (Shanghai) CO LTD
+#
+# SPDX-License-Identifier: Apache-2.0
+
 """Lambda construction helpers for esp-cloud-common.
 
 [create_lambda_function] is a thin wrapper around

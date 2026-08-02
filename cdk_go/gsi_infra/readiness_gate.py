@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2024-2026 Espressif Systems (Shanghai) CO LTD
+#
+# SPDX-License-Identifier: Apache-2.0
+
 """GsiReadinessGate: a stack-level barrier that holds CFN deploy completion
 until every ManagedTable in the parent stack is ACTIVE and every GSI on it is
 ACTIVE && !Backfilling — using a native ``AWS::CloudFormation::WaitCondition``

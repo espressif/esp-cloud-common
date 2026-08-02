@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2024-2026 Espressif Systems (Shanghai) CO LTD
+#
+# SPDX-License-Identifier: Apache-2.0
+
 """Shared CDK helpers used by other esp-cloud-common constructs.
 
 The canonical entry point is [create_lambda_function], a thin wrapper

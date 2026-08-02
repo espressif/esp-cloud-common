@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2024-2026 Espressif Systems (Shanghai) CO LTD
+//
+// SPDX-License-Identifier: Apache-2.0
+
 // Package clog provides a global zerolog-based logger configured from the
 // CLOG environment variable. Filtering rules and accepted keys are
 // documented on [InitLogger].

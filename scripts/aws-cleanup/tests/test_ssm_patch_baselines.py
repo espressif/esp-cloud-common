@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2024-2026 Espressif Systems (Shanghai) CO LTD
+#
+# SPDX-License-Identifier: Apache-2.0
+
 """Tests for SSM patch baseline cleanup.
 
 These exist because ``describe_patch_baselines`` without a filter returns

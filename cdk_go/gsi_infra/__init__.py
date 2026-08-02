@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2024-2026 Espressif Systems (Shanghai) CO LTD
+#
+# SPDX-License-Identifier: Apache-2.0
+
 """GSI orchestrator: a CDK construct that serializes DynamoDB GSI changes
 behind a state machine + custom resource. The user-facing API is
 [ManagedTable] (a drop-in for `aws_cdk.aws_dynamodb.Table`) and

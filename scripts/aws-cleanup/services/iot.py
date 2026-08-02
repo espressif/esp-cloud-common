@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2024-2026 Espressif Systems (Shanghai) CO LTD
+#
+# SPDX-License-Identifier: Apache-2.0
+
 """IoT Core cleanup.
 
 Covers: things, thing groups, thing types, billing groups, certificates,

@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2024-2026 Espressif Systems (Shanghai) CO LTD
+#
+# SPDX-License-Identifier: Apache-2.0
+
 """KMS cleanup — schedules customer-managed CMKs for deletion.
 
 KMS does not allow immediate deletion. ``schedule_key_deletion`` queues a key

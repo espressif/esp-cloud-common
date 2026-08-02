@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2024-2026 Espressif Systems (Shanghai) CO LTD
+#
+# SPDX-License-Identifier: Apache-2.0
+
 """WAFv2 cleanup — REGIONAL and CLOUDFRONT scopes.
 
 Web ACLs and rule groups require a LockToken on delete. The CLOUDFRONT scope
