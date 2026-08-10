@@ -4,6 +4,8 @@
 
 workflow:
   rules:
+    - if: '$CI_COMMIT_BRANCH =~ /^refs\//'
+      when: never
     - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
     - if: "$CI_COMMIT_BRANCH && $CI_OPEN_MERGE_REQUESTS"
       when: never
@@ -54,10 +56,12 @@ unittest:
 # -------------------------
 go_vulncheck:
   stage: security
-  # Pinned (the default image here is Go 1.22.1): the scan must run on Go >= 1.26.5
-  # so the crypto/tls stdlib advisory is already fixed, matching the module's go
-  # directive. The floating minor tag keeps picking up stdlib security patches
-  # without an unpredictable jump to a new major/minor that :latest would bring.
+  # Deliberately not the default image. govulncheck reports stdlib advisories
+  # against the toolchain it runs on, so the scan needs a Go that tracks upstream
+  # patch releases; the shared rmng image is rebuilt on its own cadence and would
+  # keep reporting stdlib findings until someone respins it. The floating minor
+  # stays on the module's go directive (1.26.5) while picking up stdlib security
+  # patches, without the unpredictable major/minor jump that :latest would bring.
   image: golang:1.26
   rules:
     - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
