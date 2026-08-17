@@ -15,7 +15,7 @@ variables:
   GIT_SUBMODULE_STRATEGY: recursive
 
 default:
-  image: ${CI_DOCKER_IMAGE_PATH_RAINMAKER_NEO}/rmng:go1.26.5_node22
+  image: ${CI_DOCKER_IMAGE_PATH_RAINMAKER_NEO}/rmng:go1.26.6_node24
   tags:
     - rmng
 
@@ -56,13 +56,7 @@ unittest:
 # -------------------------
 go_vulncheck:
   stage: security
-  # Deliberately not the default image. govulncheck reports stdlib advisories
-  # against the toolchain it runs on, so the scan needs a Go that tracks upstream
-  # patch releases; the shared rmng image is rebuilt on its own cadence and would
-  # keep reporting stdlib findings until someone respins it. The floating minor
-  # stays on the module's go directive (1.26.5) while picking up stdlib security
-  # patches, without the unpredictable major/minor jump that :latest would bring.
-  image: golang:1.26
+  image: golang:1.26.6
   rules:
     - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
       changes:
