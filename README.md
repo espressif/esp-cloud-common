@@ -4,7 +4,7 @@ Shared, reusable infrastructure modules and code libraries for Espressif cloud p
 
 Anything here is designed to be consumed by multiple Espressif products. If a piece of infrastructure or code is only needed by one product, it stays in that product's repo. When a second consumer appears, it moves here.
 
-Go module path: `github.com/espressif/esp-cloud-common` (Go 1.26.6).
+Go module path: `github.com/espressif/esp-cloud-common` (Go 1.26.9).
 
 ## Layout
 

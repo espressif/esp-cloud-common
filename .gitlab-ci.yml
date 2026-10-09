@@ -15,7 +15,7 @@ variables:
   GIT_SUBMODULE_STRATEGY: recursive
 
 default:
-  image: ${CI_DOCKER_IMAGE_PATH_RAINMAKER_NEO}/rmng:go1.26.6_node24
+  image: ${CI_DOCKER_IMAGE_PATH_RAINMAKER_NEO}/rmng:go1.26.9_node24
   tags:
     - rmng
 
@@ -56,7 +56,7 @@ unittest:
 # -------------------------
 go_vulncheck:
   stage: security
-  image: golang:1.26.6
+  image: golang:1.26.9
   rules:
     - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
       changes:
